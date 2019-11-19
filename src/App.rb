@@ -28,10 +28,6 @@ end
 строк - 3
 =end
 require_relative 'Field'
-require_relative 'Square'
-require_relative 'Bot'
-require_relative 'Player'
-require_relative 'User'
 
 Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 	background "../sourse/1.png"
@@ -45,7 +41,6 @@ Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 			click do
 				if @clickable
 					check2(left, top)
-					@win = randomBot()
 					if @win == true
 						background white..gray
 						@clickable = false
@@ -102,6 +97,7 @@ Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 				if @fieldN.get(i, j).free
 					image = image (@fieldN.get(i, j).path, top: @fieldN.get(i, j).top, left: @fieldN.get(i, j).left)
 					@fieldN.get(i, j).set(1)
+					@win = randomBot()
 				end
 			end
 		end
