@@ -30,17 +30,14 @@ end
 
 Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 	background "../sourse/1.png"
+	@field = Field.new()
 	stack do
-		@image = image("../sourse/2.png", top: top, left: top)
+		@image = image("../sourse/2.png", top: top, left: left)
     	motion do |left, top|
       		@image.move left - 30, top - 30
 			click do
 				if @clickable
-					if (@image.path <=> "../sourse/3.png") == 0
-						@image = image("../sourse/2.png", top: top - 30, left: left - 30)
-					else
-						@image = image("../sourse/3.png", top: top - 30, left: left - 30)
-					end
+					check(@feild, left, top)
 				end
 			end
 			start do
@@ -50,14 +47,52 @@ Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
  	end
 =begin
 =end
+
+
+def check(field, left, top)
+	if top.between?(125, 200)
+		if left.between?(125, 200)
+			image = image ("../sourse/2.png", top: 125, left: 130)
+		elsif left.between?(200, 275)
+			image = image ("../sourse/2.png", top: 125, left: 215)
+		elsif left.between?(275, 350)
+			image = image ("../sourse/2.png", top: 125, left: 285)
+		end
+	end
+	if top.between?(200, 275)
+		if left.between?(125, 200)
+			image = image ("../sourse/2.png", top: 200, left: 130)
+		elsif left.between?(200, 275)
+			image = image ("../sourse/2.png", top: 200, left: 215)
+		elsif left.between?(280, 350)
+			image = image ("../sourse/2.png", top: 200, left: 285)
+		end
+	end
+	if top.between?(275, 350)
+		if left.between?(125, 200)
+			image = image ("../sourse/2.png", top: 275, left: 130)
+		elsif left.between?(200, 275)
+			image = image ("../sourse/2.png", top: 275, left: 215)
+		elsif left.between?(280, 350)
+			image = image ("../sourse/2.png", top: 275, left: 285)
+		end
+	end
+	return field
 end
+
+end
+
 class Field
 	def initialize
+		top = 125
+		left = 125
 		@field = Array.new()
-		for i in (0..2)
+		for i in (1..3)
 			newArray = Array.new()
-			for j in (0..2)
+			for j in (1..3)
 				square = Square.new
+				square.left += j * 75;
+				square.top += i * 75;
 		    	newArray << square
 			end
 			@field << newArray
@@ -66,7 +101,8 @@ class Field
 	def printField
 		for i in (0..2)
 			for j in (0..2)
-				print "#{@field[i][j].get}\t";
+				print "#{@field[i][j].top}\t";
+				# print "#{@field[i][j].get}\t";
 			end
 			print "\n"
 		end
@@ -74,25 +110,23 @@ class Field
 end
 
 class Square
+	attr_accessor :path, :free, :xORo, :top, :left
 	def initialize
-		@image = nil
 		@free = true
 		@xORo = -1
+		@top = 125
+		@left = 125
+		@path = "../sourse/2.png"
 	end
-	def set(xORo)
-		@free = false
-		if (xORo <= 1 and xORo >=-1)
+	def set(xORo, left, right)
+		if (xORo == 1 or xORo == 0)
+			@free = false
 			@xORo = xORo
 		end
-	end
-	def get
-		@xORo
 	end
 end
 
 class Main
-	field = Field.new()
-	field.printField()
 end
 
 Main
