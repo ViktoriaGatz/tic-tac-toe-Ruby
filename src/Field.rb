@@ -23,7 +23,7 @@ class Field < Square
 			arrayNew = Array.new()
 			for j in (0..2)
 				arrayNew << @field[i][j].xORo
-				puts "#{@field[i][j].xORo}"
+				#puts "#{@field[i][j].xORo}"
 			end
 			arrayReturn << arrayNew
 		end

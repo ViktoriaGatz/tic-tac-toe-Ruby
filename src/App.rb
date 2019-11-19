@@ -1,32 +1,3 @@
-=begin
-Shoes.app :title => "tic tac toe" do
-	background white..gray
-	# title("Shoooes", top: 60, align: "center", font: "Trebuchet MS", stroke: white)
-	@rect1 = nil
-	@rect2 = nil
-	@rect3 = nil
-	field() do
-		style(:margin_left => 135, :margin_top => 90)
-#		rect1 = rect()
-		fill red
-		@rect1 = rect(width: 100)
-		@rect1.style(border: 'none')
-		@rect2 = rect(left: 110, width: 100)
-		@rect3 = rect(left: 220, width: 100)
-		@rect4 = rect(top: 110, width: 100)
-		@rect5 = rect(top: 110, left: 110, width: 100)
-		@rect6 = rect(top: 110, left: 220, width: 100)
-		@rect4 = rect(top: 220, width: 100)
-		@rect5 = rect(top: 220, left: 110, width: 100)
-		@rect6 = rect(top: 220, left: 220, width: 100)
-	end
-	field()
-end
-вся длина - х пикселей
-объект - 100 пикселей
-объектов в строке - 3
-строк - 3
-=end
 require_relative 'Field'
 
 Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
@@ -52,8 +23,8 @@ Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 			end
     	end
  	end
-=begin
-=end
+
+
 	def randomBot()
 		lol = true
 		while lol do
@@ -86,7 +57,6 @@ Shoes.app :title => "tic tac toe", :width => 480, :height => 480 do
 				end
 			end
 		end
-
 		return false
 	end
 
